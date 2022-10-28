@@ -48,10 +48,14 @@ This is the Tinybird's project. It contains the Pipe and Data Source needed to b
 
 ## Initialize project
 
-1. Create a virtual environment
+1. Clone repository in a virtual environment
 
 ```sh
 virtualenv -p python3.8 .e
+
+. .e/bin/activate
+
+git clone https://github.com/AlisonDavey/soil_moisture.git
 ```
 
 2. Authenticate using Tinybird's CLI
@@ -61,7 +65,7 @@ pip install tinybird-cli
 ```
 
 ```sh
-cd workspace
+cd soil_moisture/workspace
 ```
 
 ```sh
