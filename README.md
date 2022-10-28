@@ -36,11 +36,11 @@ Go to [Tinybird](https://www.tinybird.co/) and create a free account, if don't a
 
 ## Project setup
 
-* `workspace` directory:
+**`workspace` directory**
 
-Here is the SQL Pipe and Data Source schema needed to build the project.
+The SQL Pipe and Data Source schema needed to build the project.
 
-* `scripts` directory:
+**`scripts` directory**
 
 - python script to download the data and send it to Tinybird. You will need to set up an [Earthdata login](https://urs.earthdata.nasa.gov/oauth/authorize) to have your {UID} and {PASSWORD}. Use the Tinybird {TOKEN} from your workspace. Store the values in your `.env` file.
 
