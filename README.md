@@ -82,7 +82,12 @@ tb push
 
 ## Push soil moisture data
 
-Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads a file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day.  
+Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads a file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day. 
+
+```sh
+cd ..
+python scripts/soil_moisture_data_to_tinybird.py
+```
 
 ## Sources
 
