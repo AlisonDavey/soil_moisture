@@ -32,19 +32,19 @@ O'Neill, P. E., S. Chan, E. G. Njoku, T. Jackson, R. Bindlish, and J. Chaubell. 
 
 ## Create a Tinybird account
 
-Go to [Tinybird](https://www.tinybird.co/) and create a free account, if don't already have one already. You can create a new workspace or use an existing one.
+Go to [Tinybird](https://www.tinybird.co/) and create a free account, if don't already have one. Either create a new workspace or use an existing one.
 
 ## Project setup
 
 * `workspace` directory:
 
-This is the Tinybird's project. It contains the Pipe and Data Source needed to build the project.
+Here is the SQL Pipe and Data Source schema needed to build the project.
 
 * `scripts` directory:
 
-- python script to download the data and send it to Tinybird. You will need to set up an [Earthdata login](https://urs.earthdata.nasa.gov/oauth/authorize) to have your {uid} and {password}. Use the Tinybird {token} from your workspace.
+- python script to download the data and send it to Tinybird. You will need to set up an [Earthdata login](https://urs.earthdata.nasa.gov/oauth/authorize) to have your {UID} and {PASSWORD}. Use the Tinybird {TOKEN} from your workspace. Store the values in your `.env` file.
 
-- python script of the plot commands used in the [HEX](https://app.hex.tech/138d7e08-1b21-474f-a78c-baee6d4bfc2a/app/8b9f85a8-3841-4162-9471-ede3ae685576/latest)  app.
+- python script of the plot commands used in the [HEX](https://app.hex.tech/138d7e08-1b21-474f-a78c-baee6d4bfc2a/app/8b9f85a8-3841-4162-9471-ede3ae685576/latest) app.
 
 ## Initialize project
 
@@ -82,7 +82,7 @@ tb push
 
 ## Push soil moisture data
 
-Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads a file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day. 
+Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads the data file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day. 
 
 ```sh
 cd ..
