@@ -4,13 +4,15 @@ by Alison Davey
 
 ## Hackathon
 
-This project is for the ["To Infinity and beyond"](https://www.tinybird.co/events/tinybird-hackathon) Tinybird's first hackathon.
+This project is for Tinybird's first hackathon ["To Infinity and beyond"](https://www.tinybird.co/events/tinybird-hackathon).
 
-The theme is **space**. We use satellite data measuring soil moisture across the globe.
+The theme is **space**. Satellite data measuring soil moisture across the globe is shown on global maps.
 
 ## The App
 
-The satellite data in Tinybird powers the [HEX](https://app.hex.tech/138d7e08-1b21-474f-a78c-baee6d4bfc2a/app/8b9f85a8-3841-4162-9471-ede3ae685576/latest) app showing soil moisture.
+The satellite data stored in Tinybird powers the [HEX](https://app.hex.tech/138d7e08-1b21-474f-a78c-baee6d4bfc2a/app/8b9f85a8-3841-4162-9471-ede3ae685576/latest) app.
+
+For the selected day you see the results of the morning pass of the satellite, the afternoon pass, the two passes combined and finally a plot of several days data to fill in the blanks.
 
 ![Data Flow](images/global_5_days.png)
 
@@ -18,15 +20,15 @@ The satellite data in Tinybird powers the [HEX](https://app.hex.tech/138d7e08-1b
 
 NASA's Soil Moisture Active Passive (SMAP) satellite uses two microwave instruments to monitor the top 2 inches (5 centimeters) of soil on Earth's surface. Together, the instruments create soil moisture estimates with a resolution of about 6 miles (9 kilometers), mapping the entire globe every two or three days.
 
-NASA's [SMAP viewer](https://smap.jpl.nasa.gov/map/) is not currently working, so let's build our own.
+These plots are of the Level-3 (L3) soil moisture data, which is a composite of daily estimates of global land surface conditions. SMAP L-band soil moisture data are resampled to a global, cylindrical 36 km Equal-Area Scalable Earth Grid (406 rows x 964 columns). 
 
-The Level-3 (L3) soil moisture data is a composite of daily estimates of global land surface conditions. SMAP L-band soil moisture data are resampled to a global, cylindrical 36 km Equal-Area Scalable Earth Grid (406 rows x 964 columns). 
+The NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) distributes cryosphere and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns, and field observations. 
+
+_NASA's [SMAP viewer](https://smap.jpl.nasa.gov/map/) is not currently working, so let's build our own!_
 
 #### Citation
 
 O'Neill, P. E., S. Chan, E. G. Njoku, T. Jackson, R. Bindlish, and J. Chaubell. (2021). SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture, Version 8 [Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/OMHVSRGFX38O. Date Accessed 10-23-2022.
-
-The NASA National Snow and Ice Data Center Distributed Active Archive Center (NSIDC DAAC) distributes cryosphere and related geophysical data from NASA Earth-observing satellite missions, airborne campaigns, and field observations. 
 
 ## Create a Tinybird account
 
@@ -41,7 +43,8 @@ This is the Tinybird's project. It contains the Pipe and Data Source needed to b
 * `scripts` directory:
 
 - python script to download the data and send it to Tinybird. You will need to set up an [Earthdata login](https://urs.earthdata.nasa.gov/oauth/authorize) to have your {uid} and {password}. Use the Tinybird {token} from your workspace.
-- python script showing the plot commands used in the HEX app
+
+- python script of the plot commands used in the [HEX](https://app.hex.tech/138d7e08-1b21-474f-a78c-baee6d4bfc2a/app/8b9f85a8-3841-4162-9471-ede3ae685576/latest)  app.
 
 ## Initialize project
 
@@ -51,7 +54,7 @@ This is the Tinybird's project. It contains the Pipe and Data Source needed to b
 virtualenv -p python3.8 .e
 ```
 
-2. Authenticate using the Tinybird's CLI
+2. Authenticate using Tinybird's CLI
 
 ```sh
 pip install tinybird-cli
@@ -65,7 +68,7 @@ cd workspace
 tb auth --token $TOKEN
 ```
 
-3. Push project to workspace
+3. Push project to Tinybird
 
 ```sh
 tb push
@@ -75,7 +78,7 @@ tb push
 
 ## Push soil moisture data
 
-Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`
+Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads a file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day.  
 
 ## Sources
 
