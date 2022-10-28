@@ -78,7 +78,7 @@ tb auth --token $TOKEN
 tb push
 ```
 
-![Data Flow](images/dataflow.png)
+![Data Flow](images/data_flow.png)
 
 ## Push soil moisture data
 
