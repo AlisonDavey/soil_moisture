@@ -1,0 +1,24 @@
+DESCRIPTION >
+	Tinybird Space Hackathon October 2022
+
+
+NODE soil_moisture_pipe_0
+SQL >
+
+    %
+    SELECT columns
+    FROM soil_moisture
+    WHERE
+        date = {{ Date(date, "2022-10-17", description="start date for plots") }}
+        AND am_0_pm_1
+        = {{ Int8(am, 0, description="morning or afternoon pass of the satellite") }}
+    ORDER BY date, am_0_pm_1, row
+
+
+
+NODE soil_moisture_pipe_1
+SQL >
+
+    SELECT date, count() FROM soil_moisture GROUP BY date
+
+

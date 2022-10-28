@@ -1,0 +1,10 @@
+
+SCHEMA >
+    `am_0_pm_1` UInt8 `json:$.am_0_pm_1`,
+    `columns` Array(UInt32) `json:$.columns[:]`,
+    `date` Date `json:$.date`,
+    `row` UInt16 `json:$.row`
+
+ENGINE "MergeTree"
+ENGINE_PARTITION_KEY "toYear(date)"
+ENGINE_SORTING_KEY "date, am_0_pm_1, row"
