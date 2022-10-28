@@ -89,6 +89,14 @@ cd ..
 python scripts/soil_moisture_data_to_tinybird.py
 ```
 
+![Populated Data Source](images/populated_data_source.png)
+
+Each record is a row of data, with:
+- the flag for the morning or the afternoon pass of the satellite
+- an integer array of the 964 column values of soil moisture
+- the date of the pass
+- the row number for each of the 406 rows.
+
 ## Sources
 
 * [Elena Torro's entry](https://github.com/elenatorro/asteroids-k-means-clustering) for the readme and project structure
