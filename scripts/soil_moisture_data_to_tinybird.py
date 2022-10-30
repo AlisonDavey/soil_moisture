@@ -25,6 +25,20 @@ def runcmd(cmd, *args, **kwargs):
     std_out, std_err = process.communicate()
     pass
 
+
+def runcmd(cmd, *args, **kwargs):
+
+    process = subprocess.Popen(
+        cmd,
+        stdout = subprocess.PIPE,
+        stderr = subprocess.PIPE,
+        text = True,
+        shell = True
+    )
+    std_out, std_err = process.communicate()
+
+    pass
+
 def process_data(data, data_date, am_or_pm):
     
     # prepare the data we want to send to tinybird
@@ -66,7 +80,7 @@ def process_data(data, data_date, am_or_pm):
     return r, data_date, am_or_pm
 
 def main():
-  for day in range(6,27):
+  for day in range(6,29):
 
     url_start = "https://n5eil01u.ecs.nsidc.org/SMAP/SPL3SMP.008/2022.10."
     url_end = "_R18290_001.h5"
@@ -91,4 +105,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
