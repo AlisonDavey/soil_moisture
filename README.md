@@ -6,7 +6,7 @@ by Alison Davey
 
 This project is for Tinybird's first hackathon ["To Infinity and beyond"](https://www.tinybird.co/events/tinybird-hackathon).
 
-The theme is **space**. Satellite data measuring soil moisture across the globe is shown on global maps.
+The theme is **space**. An important part of activity in space is observing the Earth. In this project, satellite data measuring soil moisture across the globe is shown on global maps.
 
 ## The App
 
@@ -15,6 +15,8 @@ The satellite data stored in Tinybird powers the [HEX](https://app.hex.tech/138d
 For the selected day you see the results of the morning pass of the satellite, the afternoon pass, the two passes combined and finally a plot of several days data to fill in the blanks.
 
 ![Data Flow](images/global_5_days.png)
+
+You can also select a country and city to show a more local area and a bar plot of the soil moisture numbers for that city.
 
 ## The Data
 
@@ -29,6 +31,8 @@ _NASA's [SMAP viewer](https://smap.jpl.nasa.gov/map/) is not currently working, 
 #### Citation
 
 O'Neill, P. E., S. Chan, E. G. Njoku, T. Jackson, R. Bindlish, and J. Chaubell. (2021). SMAP L3 Radiometer Global Daily 36 km EASE-Grid Soil Moisture, Version 8 [Data Set]. Boulder, Colorado USA. NASA National Snow and Ice Data Center Distributed Active Archive Center. https://doi.org/10.5067/OMHVSRGFX38O. Date Accessed 10-23-2022.
+
+The table of cities is from the [World Cities Database](https://simplemaps.com/data/world-cities).
 
 ## Create a Tinybird account
 
@@ -82,7 +86,7 @@ tb push
 
 ## Push soil moisture data
 
-Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads the data file for each day from 6 October 2022 to 26 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day. 
+Download, preprocess and push the data to Tinybird using the script `script/soil_moisture_data_to_tinybird.py`. The script downloads the data file for each day from 6 October 2022 to 28 October 2022. Each file is 30 MB - 35 MB in `h5` format. Selecting just the data we want and storing that in Tinybird is less than 400 KB per day. 
 
 ```sh
 cd ..
@@ -97,7 +101,21 @@ Each record is a row of data, with:
 - the date of the pass
 - the row number for each of the 406 rows.
 
+## Dimension files
+
+To support selecting data for more local areas a couple of dimension tables were loaded to Tinybird from the UI:
+- `worldcities` from the CSV file downloaded from https://simplemaps.com/data/world-cities
+- `lats` an approximate latitude value for each row of data. This was created from a single file of soil moisture data
+`pd.DataFrame((pd.DataFrame(group['latitude_centroid_pm'][()])).replace(-9999.0,0).max(axis=1)[:203]).to_csv('lats.csv')`
+
+## Soil moisture for a local area
+- the pipe `country_list` serves a list of countries to the country dropdown in the app
+- the pipe `city_list` serves a list of cities to the city dropdown in the app, for the selected country
+- the pipe `soil_moisture_for_city` returns the time series of the soil moisture data for a single cell, close to the selected city, for the bar plot.
+
+
 ## Sources
 
 * [Elena Torro's entry](https://github.com/elenatorro/asteroids-k-means-clustering) for the readme and project structure
 * [NASA's SMAP Documentation](https://nsidc.org/data/spl3smp/versions/8)
+* [World Cities Database](https://simplemaps.com/data/world-cities)
