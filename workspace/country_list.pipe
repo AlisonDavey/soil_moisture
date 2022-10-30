@@ -1,0 +1,8 @@
+NODE country_list_0
+SQL >
+
+    SELECT distinct country FROM worldcities
+    WHERE population > 100000
+    ORDER BY country
+
+

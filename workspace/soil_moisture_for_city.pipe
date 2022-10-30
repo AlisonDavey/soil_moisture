@@ -1,0 +1,47 @@
+NODE row_column_for_city_0
+SQL >
+
+    %
+    WITH (SELECT groupArray(latitude) FROM lats) as arr
+    SELECT
+        if(
+            lat > 0,
+            arrayFirstIndex(x -> x < lat, arr) - 1,
+            203 + (203 - arrayFirstIndex(x -> x < abs(lat), arr)) - 1
+        ) row,
+        round(482 + 482 * lng / 180, 0) column,
+        city,
+        country,
+        lat,
+        lng as lon,
+        formatReadableQuantity(population) as population
+    FROM worldcities
+    WHERE
+        city = {{ String(city, "London", description="City") }}
+        and country = {{ String(country, "United Kingdom", description="Country") }}
+    LIMIT 1
+
+
+
+NODE row_column_for_city_1
+SQL >
+
+    WITH
+        (select column from row_column_for_city_0) AS the_col,
+        (select row from row_column_for_city_0) AS the_row
+    SELECT date, am_0_pm_1, columns[toUInt32(the_col)] as sm, the_row, the_col
+    FROM soil_moisture
+    WHERE row = the_row
+    ORDER BY date, am_0_pm_1
+
+
+
+NODE soil_moisture_for_city_2
+SQL >
+
+    SELECT distinct date, max(sm) sm, max(the_row) row, max(the_col) col
+    FROM row_column_for_city_1
+    GROUP BY date
+    ORDER BY date
+
+

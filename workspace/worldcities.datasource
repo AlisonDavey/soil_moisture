@@ -1,0 +1,18 @@
+DESCRIPTION >
+    https://simplemaps.com/data/world-cities
+
+SCHEMA >
+    `city` String,
+    `city_ascii` String,
+    `lat` Float32,
+    `lng` Float32,
+    `country` String,
+    `iso2` String,
+    `iso3` String,
+    `admin_name` Nullable(String),
+    `capital` Nullable(String),
+    `population` Nullable(Float32),
+    `id` Int64
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "city, iso2, iso3, id"

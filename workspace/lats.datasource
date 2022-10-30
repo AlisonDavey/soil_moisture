@@ -1,0 +1,7 @@
+
+SCHEMA >
+    `row` Int16,
+    `latitude` Float32
+
+ENGINE "MergeTree"
+ENGINE_SORTING_KEY "row"

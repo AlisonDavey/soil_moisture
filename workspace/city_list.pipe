@@ -1,0 +1,17 @@
+NODE city_list_0
+SQL >
+
+    %
+    SELECT city
+    FROM worldcities
+    WHERE country = {{ String(country, "United Kingdom") }} AND population > 100000
+    ORDER BY city
+
+
+
+NODE city_list_1
+SQL >
+
+    SELECT * FROM city_list
+
+
